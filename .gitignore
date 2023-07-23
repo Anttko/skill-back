@@ -1,0 +1,8 @@
+node_modules
+build
+
+coverage
+jest.config.js
+dist
+.env
+cndb

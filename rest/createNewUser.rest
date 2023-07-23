@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/addhash HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiMTIzIiwiaWF0IjoxNjgwNjEyNjExLCJleHAiOjE2ODA2MTYyMTF9.Xlp-lAzyJoXP2k9O0cLKnh_eNgTgTByyWKCgE4yudww
+content-type: application/json
+
+{
+    "hashkey": "superuser"
+}

@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  postgrestest:
+    image: postgres:13
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=testdatabase
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  skill-back-test:
+    image: tests
+    build:
+      context: .
+      dockerfile: test.Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/usr/src/app
+    container_name: skill-back-test
+    depends_on:
+      - postgrestest
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET=${SECRET_KEY}
+    restart: always
+  initdatabase-test:
+    image: tests
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c " npx prisma db push && npx prisma db seed 
+       && npx prisma migrate dev --name init -skip-generate
+      "
+    env_file:
+      - .env.test
+    depends_on:
+      - skill-back-test
+      - postgrestest
+volumes:
+  postgres:
+    ## Some extra commands: 
+    ## npx prisma db push && npx prisma db seed && npx prisma migrate dev --name init

@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SoftSkill {
+  id              Int           @id @default(autoincrement())
+  softSkillNumber String        @unique
+  softSkill       String
+  description     String
+  SoftResults     SoftResults[]
+}
+
+model Skill {
+  id                 Int           @id @default(autoincrement())
+  sfiaid             String        @unique
+  levels             String?
+  level1             String?
+  level2             String?
+  level3             String?
+  level5             String?
+  level6             String?
+  level7             String?
+  code               String
+  skill              String
+  category           String
+  subcategory        String?
+  overalldescription String?
+  guidancenotes      String?
+  level1description  String?
+  level2description  String?
+  level3description  String?
+  level4description  String?
+  level5description  String?
+  level6description  String?
+  level7description  String?
+  keywords           String[]
+  SfiaResults        SfiaResults[]
+}
+
+model Responsibility {
+  id             Int    @id @default(autoincrement())
+  level          Int
+  autonomy       String
+  influence      String
+  complexity     String
+  businessSkills String
+  knowledge      String
+}
+
+model User {
+  id              String        @id @unique @default(uuid())
+  hashkey         String        @unique
+  createdAt       DateTime      @default(now())
+  hasFilledSurvey Boolean       @default(false)
+  softResults     SoftResults[]
+  sfiaResults     SfiaResults[]
+}
+
+model SoftResults {
+  id              Int       @id @default(autoincrement())
+  hashkey         User      @relation(fields: [hashkeyId], references: [id])
+  softSkillNumber SoftSkill @relation(fields: [softSkillId], references: [id])
+  softSkillId     Int
+  hashkeyId       String
+  result          String
+}
+
+model SfiaResults {
+  id          Int    @id @default(autoincrement())
+  hashkey     User   @relation(fields: [hashkeyId], references: [id])
+  sfiaid      Skill  @relation(fields: [sfiaSkillId], references: [id])
+  sfiaSkillId Int
+  hashkeyId   String
+  result      String
+}

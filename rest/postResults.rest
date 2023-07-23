@@ -1,0 +1,29 @@
+POST http://localhost:8080/api/results/ HTTP/1.1
+content-type: application/json
+
+{
+   "sfia":  [{
+    "hashkeyId": "a434a748-91a1-4262-857a-19d79dba92c5",
+    "result":  "valuable",
+    "sfiaSkillId": 2
+   },
+   {
+    "hashkeyId": "a434a748-91a1-4262-857a-19d79dba92c5",
+    "result":  "valuable",
+    "sfiaSkillId": 3
+   },
+   
+   {
+    "hashkeyId": "a434a748-91a1-4262-857a-19d79dba92c5",
+    "result":  "valuable",
+    "sfiaSkillId": 4
+   }
+   
+   ],
+     "soft":  [{
+    "hashkeyId": "a434a748-91a1-4262-857a-19d79dba92c5",
+    "result":  "valuable",
+    "softSkillId": 3
+   }]
+   
+}

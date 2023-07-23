@@ -1,0 +1,1 @@
+GET http://localhost:3000/api/sfia?search=selling HTTP/1.1
