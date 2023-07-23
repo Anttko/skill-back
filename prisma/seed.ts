@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+/*import { PrismaClient } from '@prisma/client';
 import { sfia } from '../data/sfia';
 import { soft } from '../data/soft';
 
@@ -11,7 +11,10 @@ const userData = [
   {
     hashkey: 'test',
   },
-];
+];*/
+
+
+
 /*
 const sfiaResults = [
   {
@@ -32,7 +35,7 @@ const softResults = [
     softSkillId: 2,
     hashkeyId: '1234-123',
   },
-];*/
+];*//*
 async function main() {
   await prisma.skill.createMany({
     data: sfia,
@@ -56,7 +59,7 @@ async function main() {
     data: sfiaResults,
     skipDuplicates: true,
   });*/
-
+/*
   const userWithResults = await prisma.user.upsert({
     where: { hashkey: '12' },
     update: {},
@@ -83,3 +86,4 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+*/
